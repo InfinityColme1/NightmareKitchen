@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfc2ysplltcwb"]
+
+[ext_resource type="Script" path="res://Scenes/Gadgets/Oven/oven.gd" id="1_o5kx5"]
+[ext_resource type="Texture2D" uid="uid://cw4v8rb0mrer8" path="res://Sprites/White.jpg" id="1_x1xh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efskw"]
+size = Vector2(384, 384)
+
+[node name="Oven" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+freeze = true
+script = ExtResource("1_o5kx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_efskw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(6, 6)
+texture = ExtResource("1_x1xh1")

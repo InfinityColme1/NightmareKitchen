@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx7hyy2njvk1r"]
+
+[ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_46kf8"]
+[ext_resource type="Texture2D" uid="uid://ch470pf7n1nai" path="res://icon.svg" id="1_a0q8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcwl8"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saty1"]
+size = Vector2(32, 256)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 64)
+collision_layer = 4
+script = ExtResource("1_46kf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_mcwl8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a0q8s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -128)
+texture = ExtResource("1_a0q8s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-32, -64)
+
+[node name="ActionArea" type="Area2D" parent="."]
+position = Vector2(0, -64)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea"]
+position = Vector2(80, 0)
+shape = SubResource("RectangleShape2D_saty1")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="ActionArea" to="." method="_on_action_area_body_entered"]
+[connection signal="body_exited" from="ActionArea" to="." method="_on_action_area_body_exited"]
